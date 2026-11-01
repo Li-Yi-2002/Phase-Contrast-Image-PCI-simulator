@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Phase Contrast Imaging Lab · 780 nm</title>
+<style>
+:root{--bg:#08111f;--panel:#101c2d;--panel2:#142238;--border:#293c57;--ink:#eef6ff;--soft:#a8bcd3;--cyan:#51d8df;--gold:#ffbe68;--violet:#c4a1ff;--green:#6fe0b5;--bad:#ffb08b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% -20%,#183350 0,transparent 52%),var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:14px;line-height:1.53}
+header{padding:24px clamp(16px,3vw,46px) 15px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:center;border-bottom:1px solid var(--border)}header h1{font-weight:760;letter-spacing:-.8px;font-size:clamp(25px,3vw,36px);margin:0}header p{color:var(--soft);margin:3px 0 0}.pill{border-radius:100px;border:1px solid #316579;background:#0e3342;padding:8px 14px;color:#91f4f2;font-weight:700;letter-spacing:.4px}
+main{max-width:1550px;margin:auto;padding:19px clamp(14px,2.5vw,34px) 40px}.intro{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:0 0 14px;color:var(--soft);flex-wrap:wrap}h2{font-size:16px;margin:0 0 12px;font-weight:740}h3{font-size:13px;letter-spacing:.6px;text-transform:uppercase;color:#d7e8fb;margin:0 0 12px}.panel{border:1px solid var(--border);background:linear-gradient(145deg,rgba(19,34,54,.97),rgba(12,24,39,.98));border-radius:16px;padding:17px;min-width:0}.diagram{padding:12px 17px 7px;margin-bottom:17px}.diagram svg{display:block;width:100%;height:auto;max-height:230px}.diagram-foot{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;color:var(--soft);font-size:11px;padding:3px 4px 7px}.layout{display:grid;grid-template-columns:minmax(280px,325px) minmax(0,1fr);gap:18px;align-items:start}.settings{display:grid;gap:13px}.settings .panel{padding:16px}.control{margin-bottom:13px}.control:last-child{margin-bottom:0}.control .topline{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:5px}.control label{font-size:12px;color:#d3e5f7}.field{display:flex;align-items:center;gap:5px;border:1px solid #344961;background:#101b2b;border-radius:8px;padding:3px 7px}.field input{width:77px;background:transparent;outline:0;color:#eef6ff;border:0;text-align:right;font-variant-numeric:tabular-nums;font-size:12px}.field span{color:#8ca9c4;font-size:11px}input[type=range]{width:100%;appearance:none;-webkit-appearance:none;background:linear-gradient(90deg,#186a76,#46dae0);height:5px;border-radius:3px;cursor:pointer;outline:0}input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:15px;height:15px;background:#edfcff;border:3px solid #31b0b9;border-radius:50%}input[type=range]::-moz-range-thumb{width:12px;height:12px;background:#edfcff;border:3px solid #31b0b9;border-radius:50%}.help{color:#8ea9c4;font-size:11px;margin:4px 0 0}.small-row{display:flex;align-items:center;justify-content:space-between;gap:8px}.toggle{display:flex;align-items:center;gap:7px;color:var(--soft);font-size:12px;cursor:pointer}.toggle input{accent-color:var(--cyan)}select{color:var(--ink);background:#15253a;border:1px solid #3b546e;border-radius:7px;padding:7px 10px;width:100%;font-size:12px}button{border:1px solid #426781;color:#e5faff;background:#16394c;padding:9px 12px;border-radius:9px;cursor:pointer;font:inherit;font-size:12px;font-weight:650}button:hover{background:#21566b}button.primary{background:#1d6975;border-color:#2aa6af}button:disabled{opacity:.6;cursor:wait}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-bottom:15px}.stat{padding:11px 12px;border:1px solid #2a405a;background:#101e30;border-radius:11px;min-width:0}.stat .k{color:#9cb5cc;font-size:11px}.stat .v{font-size:19px;font-weight:750;letter-spacing:-.4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.stat .v em{font-size:11px;font-style:normal;font-weight:500;color:#a7c6d4}.visuals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.image-card{min-width:0;padding:12px}.card-heading{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:4px;margin-bottom:9px}.card-heading strong{font-size:13px}.card-heading span{font-size:11px;color:var(--soft)}.image-stage{border:1px solid #283b52;border-radius:9px;overflow:hidden;background:#0a111c;position:relative;display:flex;justify-content:center;align-items:center}.image-stage canvas{display:block;width:100%;height:auto;aspect-ratio:1/1;image-rendering:auto;max-height:440px;object-fit:contain}.image-stage .scale{position:absolute;left:11px;bottom:10px;display:flex;flex-direction:column;gap:2px;pointer-events:none;font-size:10px;text-shadow:0 1px 3px black;color:#fff}.image-stage .scale i{height:3px;background:#f5f7ff;display:block;width:54px}.legend{display:flex;justify-content:space-between;color:var(--soft);font-size:10px;margin-top:6px;gap:10px}.subtle{color:var(--soft);font-size:12px}.below{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,340px);gap:14px;margin-top:15px}.graph{width:100%;display:block;height:auto;aspect-ratio:2.3/1;min-height:190px;background:#0b1422;border:1px solid #2c435f;border-radius:9px}.graph-legend{display:flex;gap:15px;flex-wrap:wrap;color:#a6bfd7;font-size:11px;margin-top:8px}.swatch{height:3px;width:17px;display:inline-block;vertical-align:middle;margin-right:5px}.message{font-size:12px;border-left:3px solid var(--cyan);background:#11283b;color:#c8e1ed;padding:10px 12px;border-radius:0 9px 9px 0;margin:8px 0}.message.warning{border-color:var(--bad);background:#382b2e;color:#ffdbc6}.formula{font-size:12px;color:#cfdef0;background:#0a1526;border:1px solid #27394e;border-radius:8px;padding:10px;overflow-x:auto;font-family:ui-monospace,Consolas,monospace;white-space:nowrap;margin:9px 0}.info-list{display:grid;grid-template-columns:1fr auto;gap:7px;color:#a6bfd3;font-size:12px}.info-list strong{font-variant-numeric:tabular-nums;color:#e5f4ff;font-weight:600;text-align:right}.footer{margin:22px 0 0;font-size:12px;color:#9cb4ca;line-height:1.7}.footer a{color:#86deeb}.loading{color:#8dcfd5;font-size:11px}.kbd{background:#26394e;border-radius:4px;padding:1px 4px}.line-title{margin:0 0 8px}hr{border:0;border-top:1px solid var(--border);margin:13px 0}@media(max-width:1040px){.layout{grid-template-columns:280px minmax(0,1fr)}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.below{grid-template-columns:1fr}}@media(max-width:760px){.layout{grid-template-columns:1fr}.settings{grid-template-columns:repeat(2,minmax(0,1fr))}.settings .panel:last-child{grid-column:1 / -1}.visuals{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){.settings{grid-template-columns:1fr}.settings .panel:last-child{grid-column:auto}.visuals{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat .v{font-size:17px}header{padding-top:17px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+.header-tools{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.language-switch{display:inline-flex;gap:3px;padding:4px;background:#0b2034;border:1px solid #35536c;border-radius:10px}.language-choice{min-width:64px;padding:7px 10px;background:transparent;border:1px solid transparent;border-radius:7px;color:#aac1d6;font-weight:650;transition:background .15s ease,color .15s ease}.language-choice[aria-pressed="true"]{background:#26637b;border-color:#3689a3;color:#fff}.language-choice:focus-visible{outline:2px solid #66ecf3;outline-offset:2px}@media(max-width:760px){.layout,.below{grid-template-columns:minmax(0,1fr)}.settings,.visuals{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){.header-tools{width:100%;justify-content:space-between}.language-choice{min-width:60px}.settings,.visuals{grid-template-columns:minmax(0,1fr)}.info-list{grid-template-columns:minmax(0,1fr) auto}.info-list>span{min-width:0;overflow-wrap:anywhere}.stat .k{overflow-wrap:anywhere}}
+</style>
+</head>
+<body>
+<header><div><h1 data-i18n-html="header.title">Phase Contrast <span style="color:var(--cyan)">Imaging Lab</span></h1><p data-i18n="header.subtitle">透明球體 · Two-lens phase-spot imaging · Fourier optics simulation</p></div><div class="header-tools"><div aria-label="Language / 語言" class="language-switch" role="group"><button aria-pressed="true" class="language-choice" id="langZh" lang="zh-Hant" type="button">繁中</button><button aria-pressed="false" class="language-choice" id="langEn" lang="en" type="button">English</button></div><div class="pill">λ₀ = 780 nm</div></div></header>
+<main>
+<div class="intro"><span data-i18n="intro">可改變球體半徑、折射率與 phase spot 的凹凸高度，觀察光程差如何變成 CCD 明暗對比。</span><span class="loading" data-i18n="status.initial" id="status" role="status">初始化計算…</span></div>
+<section aria-label="可調整的光路示意圖" class="panel diagram" data-i18n-aria-label="aria.0"><svg aria-label="物體、L1、L2、phase spot、CCD 光路圖" data-i18n-aria-label="aria.1" id="opticalDiagram" role="img" viewbox="0 0 1080 210"></svg><div class="diagram-foot"><span><span style="color:var(--gold)">●</span><span data-i18n="diagram.reference">未偏折參考光（示意）</span><span style="color:var(--cyan)">●</span><span data-i18n="diagram.scattered">物體繞射分量（示意）</span></span><span data-i18n="diagram.foot">PS 在參考光焦點；CCD 在物體像平面 · 圖非光線追跡結果</span></div></section>
+<div class="layout">
+<aside class="settings">
+<section class="panel"><h3 data-i18n="group.object">01 · 透明球體 / Object</h3>
+<div class="control" data-key="radius"><div class="topline"><label data-i18n="field.radius" for="radius">球體半徑 R</label><div class="field"><input aria-label="球體半徑數值" data-i18n-aria-label="aria.2" id="radiusNumber" max="100" min="2" step="1" type="number" value="24"/><span>µm</span></div></div><input id="radius" max="100" min="2" step="1" type="range" value="24"/></div>
+<div class="control" data-key="nSphere"><div class="topline"><label data-i18n="field.nSphere" for="nSphere">球體折射率 nₛ</label><div class="field"><input aria-label="球體折射率數值" data-i18n-aria-label="aria.3" id="nSphereNumber" max="1.8" min="1" step="0.0001" type="number" value="1.0015"/></div></div><input id="nSphere" max="1.8" min="1" step="0.0001" type="range" value="1.0015"/></div>
+<div class="control" data-key="nMedium"><div class="topline"><label data-i18n="field.nMedium" for="nMedium">周圍介質折射率 nₘ</label><div class="field"><input aria-label="周圍介質折射率數值" data-i18n-aria-label="aria.4" id="nMediumNumber" max="1.6" min="1" step="0.001" type="number" value="1"/></div></div><input id="nMedium" max="1.6" min="1" step="0.001" type="range" value="1"/></div>
+<p class="help" data-i18n="help.object">均勻透明、非吸收的 thin-phase-object 模型；折射率差太大時會提示模型限制。</p>
+</section>
+<section class="panel"><h3 data-i18n="group.plate">02 · Phase Spot / 凹凸相位板</h3>
+<div class="control" data-key="height"><div class="topline"><label data-i18n="field.height" for="height">相對高度 h（負值 = dent）</label><div class="field"><input aria-label="相位板相對高度數值" data-i18n-aria-label="aria.5" id="heightNumber" max="1600" min="-1600" step="1" type="number" value="433"/><span>nm</span></div></div><input id="height" max="1600" min="-1600" step="1" type="range" value="433"/></div>
+<div class="control" data-key="nPlate"><div class="topline"><label data-i18n="field.nPlate" for="nPlate">相位板折射率 nₚ</label><div class="field"><input aria-label="相位板折射率數值" data-i18n-aria-label="aria.6" id="nPlateNumber" max="2.2" min="1" step="0.01" type="number" value="1.45"/></div></div><input id="nPlate" max="2.2" min="1" step="0.01" type="range" value="1.45"/></div>
+<div class="control" data-key="nPlateBg"><div class="topline"><label data-i18n="field.nPlateBg" for="nPlateBg">相位板周圍折射率 nᵦ</label><div class="field"><input aria-label="相位板周圍折射率數值" data-i18n-aria-label="aria.7" id="nPlateBgNumber" max="1.6" min="1" step="0.01" type="number" value="1"/></div></div><input id="nPlateBg" max="1.6" min="1" step="0.01" type="range" value="1"/></div>
+<div class="control" data-key="spot"><div class="topline"><label data-i18n="field.spot" for="spot">Phase Spot 半徑 a</label><div class="field"><input aria-label="相位點半徑數值" data-i18n-aria-label="aria.8" id="spotNumber" max="500" min="20" step="1" type="number" value="95"/><span>µm</span></div></div><input id="spot" max="500" min="20" step="1" type="range" value="95"/></div>
+<div class="small-row"><label class="toggle"><input checked="" id="applySpot" type="checkbox"/><span data-i18n="field.apply">啟用 Phase Spot</span></label><span class="subtle" id="plateKind">Bump</span></div>
+<div class="actions"><button id="negPi">−π/2</button><button id="zeroH">0</button><button id="posPi">+π/2</button></div>
+</section>
+<section class="panel"><h3 data-i18n="group.geometry">03 · 成像透鏡 / Geometry</h3>
+<div class="control" data-key="f1"><div class="topline"><label data-i18n="field.f1" for="f1">L₁ 焦距 f₁</label><div class="field"><input id="f1Number" max="200" min="30" step="1" type="number" value="50"/><span>mm</span></div></div><input id="f1" max="200" min="30" step="1" type="range" value="50"/></div>
+<div class="control" data-key="f2"><div class="topline"><label data-i18n="field.f2" for="f2">L₂ 焦距 f₂</label><div class="field"><input id="f2Number" max="250" min="30" step="1" type="number" value="75"/><span>mm</span></div></div><input id="f2" max="250" min="30" step="1" type="range" value="75"/></div>
+<div class="control" data-key="gap"><div class="topline"><label data-i18n="field.gap" for="gap">L₁ → L₂ 距離 d</label><div class="field"><input id="gapNumber" max="100" min="1" step="1" type="number" value="10"/><span>mm</span></div></div><input id="gap" max="100" min="1" step="1" type="range" value="10"/></div>
+<div class="control" data-key="s1"><div class="topline"><label data-i18n="field.s1" for="s1">Object → L₁ 距離 s</label><div class="field"><input id="s1Number" max="300" min="30" step="1" type="number" value="50"/><span>mm</span></div></div><input id="s1" max="300" min="30" step="1" type="range" value="50"/></div>
+<p class="help" data-i18n="help.geometry">依 ABCD 矩陣計算 L₂ 後方參考光焦點、共軛像平面與倍率。失去可行的實像位置時會停用成像。</p>
+</section>
+<section class="panel"><h3 data-i18n="group.display">04 · 取樣與顯示</h3>
+<div class="control" data-key="NA"><div class="topline"><label data-i18n="field.NA" for="NA">物方有效 NA</label><div class="field"><input id="NANumber" max="0.35" min="0.02" step="0.01" type="number" value="0.12"/></div></div><input id="NA" max="0.35" min="0.02" step="0.01" type="range" value="0.12"/></div>
+<div class="control" data-key="dx"><div class="topline"><label data-i18n="field.dx" for="dx">物平面取樣 Δx</label><div class="field"><input id="dxNumber" max="3" min="0.5" step="0.05" type="number" value="1.25"/><span>µm</span></div></div><input id="dx" max="3" min="0.5" step="0.05" type="range" value="1.25"/></div>
+<div class="small-row" style="margin-bottom:9px"><span class="subtle" data-i18n="field.resolution">計算解析度</span><select id="resolution" style="width:118px"><option value="256">256 × 256</option><option selected="" value="512">512 × 512</option></select></div>
+<div class="small-row" style="margin-bottom:9px"><span class="subtle" data-i18n="field.zoom">影像中心放大顯示</span><select id="zoom" style="width:118px"><option data-i18n="zoom.full" value="1">1× 全視野</option><option value="2">2×</option><option selected="" value="4">4×</option><option value="8">8×</option></select></div>
+<p class="help" data-i18n="help.zoom" style="margin:-3px 0 8px">只放大視窗顯示，不修改 FFT 的計算視野或取樣。</p>
+<div class="small-row"><label class="toggle"><input checked="" id="autoScale" type="checkbox"/><span data-i18n="field.autoScale">CCD 自動灰階對比</span></label></div>
+<div class="actions"><button class="primary" data-i18n="action.save" id="saveImage">儲存 CCD PNG</button><button data-i18n="action.reset" id="reset">恢復預設</button></div>
+</section>
+</aside>
+<section>
+<div class="stats">
+<div class="stat"><div class="k" data-i18n="stat.thickness">球心厚度</div><div class="v" id="statThickness">48 <em>µm</em></div></div>
+<div class="stat"><div class="k" data-i18n="stat.objectphase">球心相位 φ(0)</div><div class="v" id="statObjectPhase">—</div></div>
+<div class="stat"><div class="k" data-i18n="stat.platephase">相位板相移 δ</div><div class="v" id="statPlatePhase">—</div></div>
+<div class="stat"><div class="k" data-i18n="stat.intensity">中心強度 I / I₀</div><div class="v" id="statIntensity">—</div></div>
+</div>
+<div class="visuals">
+<div class="panel image-card"><div class="card-heading"><strong data-i18n="image.thickness">透明球體厚度</strong><span>t(x, y)</span></div><div class="image-stage"><canvas aria-label="球體厚度分布" data-i18n-aria-label="aria.9" height="512" id="thicknessCanvas" width="512"></canvas><div class="scale"><i></i><span id="scaleLength1">—</span></div></div><div class="legend"><span data-i18n="image.center">中心 = 2R</span><span id="maxThickness">48 µm</span></div></div>
+<div class="panel image-card"><div class="card-heading"><strong data-i18n="image.phase">物體相位</strong><span>φ(x, y) mod 2π</span></div><div class="image-stage"><canvas aria-label="球體相位分布" data-i18n-aria-label="aria.10" height="512" id="phaseCanvas" width="512"></canvas><div class="scale"><i></i><span id="scaleLength2">—</span></div></div><div class="legend"><span data-i18n="image.wrapped">色相顯示相位（wrapped）</span><span id="phaseRange">—</span></div></div>
+<div class="panel image-card"><div class="card-heading"><strong>CCD · Phase Contrast</strong><span id="ccdLabel">PS ON</span></div><div class="image-stage"><canvas aria-label="相位差成像結果" data-i18n-aria-label="aria.11" height="512" id="ccdCanvas" width="512"></canvas><div class="scale"><i></i><span id="scaleLength3">—</span></div></div><div class="legend"><span data-i18n="image.gray" id="ccdContrast">灰階</span><span id="ccdRange">—</span></div></div>
+<div class="panel image-card"><div class="card-heading"><strong data-i18n="image.noSpot">CCD · 無 Phase Spot</strong><span data-i18n="image.reference">參考</span></div><div class="image-stage"><canvas aria-label="沒有相位板的成像結果" data-i18n-aria-label="aria.12" height="512" id="referenceCanvas" width="512"></canvas><div class="scale"><i></i><span id="scaleLength4">—</span></div></div><div class="legend"><span data-i18n="image.control">對照組</span><span id="referenceRange">—</span></div></div>
+</div>
+<div class="below">
+<div class="panel"><div class="card-heading"><strong data-i18n="plot.title">中心截線 / Intensity profile</strong><span id="profileSpan">x = —</span></div><canvas aria-label="有無相位板的中心強度截線圖" class="graph" data-i18n-aria-label="aria.13" height="420" id="profileCanvas" width="1000"></canvas><div class="graph-legend"><span><i class="swatch" style="background:#52e0e5"></i><span data-i18n="plot.legendWith">有 PS（模擬）</span></span><span><i class="swatch" style="background:#e0aef5"></i><span data-i18n="plot.legendWithout">無 PS（模擬）</span></span><span data-i18n="plot.legendAxes" style="color:#829cb8">垂直軸 I/I₀ · 水平軸物平面 x</span></div></div>
+<div class="panel"><h3 data-i18n="physical.checks">數值與物理檢查</h3><div class="info-list"><span data-i18n="physical.spotdist">PS 距 L₂</span><strong id="geomSpot">—</strong><span data-i18n="physical.ccddist">CCD 距 L₂</span><strong id="geomCCD">—</strong><span data-i18n="physical.mag">像的倍率</span><strong id="geomMag">—</strong><span data-i18n="physical.fov">物方視野</span><strong id="geomFov">—</strong><span data-i18n="physical.spotpx">PS 半徑 / 頻域網格</span><strong id="geomPixel">—</strong><span data-i18n="physical.ccdfov">CCD 實際視野</span><strong id="geomCCDfield">—</strong></div><div aria-live="polite" id="physicsNotes"></div></div>
+</div>
+<div class="panel" style="margin-top:15px"><h2 data-i18n="model.title">本模擬使用的物理模型</h2><div class="formula">t(r) = 2√(R² − r²), r ≤ R　;　φ(r) = (2π/λ₀)(nₛ − nₘ)t(r)</div><div class="formula">δ = (2π/λ₀)(nₚ − nᵦ)h　;　H(fₓ,fᵧ) = P(fₓ,fᵧ) [1 + (exp(iδ) − 1) M(fₓ,fᵧ)]</div><div class="formula">U_CCD ∝ ℱ⁻¹{ H · ℱ[exp(iφ)] }　;　I_CCD = |U_CCD|²</div><p class="subtle" data-i18n="model.assumptions" style="margin:7px 0 0">以 ABCD 透鏡矩陣定位物體的 Fourier-conjugate plane 與 CCD 像平面；假設傍軸、理想薄透鏡、平面波入射、薄相位物體、均勻介質、純相位 Phase Spot 和圓形有效 pupil。FFT 在物平面座標計算，CCD 影像顯示已換算回物方尺度。模型沒有模擬球體大折射率差造成的強折射／Mie 散射、鏡頭像差、真實相機雜訊或相位量測反演。</p><p class="subtle" style="margin:9px 0 0"><span data-i18n="model.first">若 PS 設為 0，對照圖只剩有限 NA 造成的 coherent diffraction。相位板改變的是參考光和散射光的</span><strong data-i18n="model.relative" style="color:#e1f6ff">相對相位</strong><span data-i18n="model.last">，不是直接把物體厚度轉成灰階；強相位可能出現亮暗反轉，不能以單張影像唯一解出厚度。</span></p><p class="subtle" style="margin:9px 0 0"><span data-i18n="model.readmore">延伸閱讀：</span><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9830780/" rel="noopener" target="_blank">Ultracold atom phase-contrast imaging methods</a> · <a href="https://www.leica-microsystems.com/science-lab/microscopy-basics/phase-contrast-and-microscopy/" rel="noopener" target="_blank">Zernike PCI principles</a></p></div>
+</section>
+</div>
+<p class="footer"><span data-i18n="footer.description">本頁為完全離線、無外部 JavaScript 依賴的教學與研究概念模擬器。可直接儲存為 .html 後使用 Chrome / Edge 開啟。數據與影像是由瀏覽器即時運算所得，而非預製示意圖。</span><br/><span data-i18n="footer.note">註：Phase Spot 是放在 L₂ 後方的參考光焦點，此焦點位置取決於兩片透鏡及其間距；其與 CCD 成像面的區別由光線傳遞矩陣驗證。</span></p>
+</main>
+</body></html>
+<script>
+'use strict';
+const lambdaUm=0.78, lambdaMm=0.00078;
+const defs={radius:24,nSphere:1.0015,nMedium:1,height:433,nPlate:1.45,nPlateBg:1,spot:95,f1:50,f2:75,gap:10,s1:50,NA:0.12,dx:1.25};
+const $=id=>document.getElementById(id);
+// All site translations are local; no external translation or network request is needed.
+const translations={"header.subtitle":{"zh":"透明球體 · Two-lens phase-spot imaging · Fourier optics simulation","en":"Transparent sphere · Two-lens phase-spot imaging · Fourier optics simulation"},"intro":{"zh":"可改變球體半徑、折射率與 phase spot 的凹凸高度，觀察光程差如何變成 CCD 明暗對比。","en":"Adjust sphere radius, refractive index, and phase-spot relief to see how optical path differences become CCD intensity contrast."},"status.initial":{"zh":"初始化計算…","en":"Initializing simulation…"},"diagram.reference":{"zh":"未偏折參考光（示意）","en":"Unscattered reference light (schematic)"},"diagram.scattered":{"zh":"物體繞射分量（示意）","en":"Object-diffracted light (schematic)"},"diagram.foot":{"zh":"PS 在參考光焦點；CCD 在物體像平面 · 圖非光線追跡結果","en":"PS at the reference focus; CCD at the image plane · Diagram is not ray tracing"},"group.object":{"zh":"01 · 透明球體 / Object","en":"01 · Transparent sphere / Object"},"field.radius":{"zh":"球體半徑 R","en":"Sphere radius R"},"field.nSphere":{"zh":"球體折射率 nₛ","en":"Sphere refractive index nₛ"},"field.nMedium":{"zh":"周圍介質折射率 nₘ","en":"Surrounding refractive index nₘ"},"help.object":{"zh":"均勻透明、非吸收的 thin-phase-object 模型；折射率差太大時會提示模型限制。","en":"Uniform, transparent, nonabsorbing thin-phase-object model. Large index contrasts trigger a model-limit warning."},"group.plate":{"zh":"02 · Phase Spot / 凹凸相位板","en":"02 · Phase Spot / Relief plate"},"field.height":{"zh":"相對高度 h（負值 = dent）","en":"Relative height h (negative = dent)"},"field.nPlate":{"zh":"相位板折射率 nₚ","en":"Phase-plate refractive index nₚ"},"field.nPlateBg":{"zh":"相位板周圍折射率 nᵦ","en":"Phase-plate surroundings index nᵦ"},"field.spot":{"zh":"Phase Spot 半徑 a","en":"Phase-spot radius a"},"field.apply":{"zh":"啟用 Phase Spot","en":"Enable Phase Spot"},"group.geometry":{"zh":"03 · 成像透鏡 / Geometry","en":"03 · Imaging lenses / Geometry"},"field.f1":{"zh":"L₁ 焦距 f₁","en":"L₁ focal length f₁"},"field.f2":{"zh":"L₂ 焦距 f₂","en":"L₂ focal length f₂"},"field.gap":{"zh":"L₁ → L₂ 距離 d","en":"L₁ → L₂ separation d"},"field.s1":{"zh":"Object → L₁ 距離 s","en":"Object → L₁ distance s"},"help.geometry":{"zh":"依 ABCD 矩陣計算 L₂ 後方參考光焦點、共軛像平面與倍率。失去可行的實像位置時會停用成像。","en":"ABCD matrices determine the reference focus after L₂, the conjugate image plane, and magnification. Imaging is disabled if no valid real image exists."},"group.display":{"zh":"04 · 取樣與顯示","en":"04 · Sampling & display"},"field.NA":{"zh":"物方有效 NA","en":"Effective object-side NA"},"field.dx":{"zh":"物平面取樣 Δx","en":"Object-plane sampling Δx"},"field.resolution":{"zh":"計算解析度","en":"Simulation resolution"},"field.zoom":{"zh":"影像中心放大顯示","en":"Center-view magnification"},"zoom.full":{"zh":"1× 全視野","en":"1× Full field of view"},"help.zoom":{"zh":"只放大視窗顯示，不修改 FFT 的計算視野或取樣。","en":"Display zoom only; FFT field of view and sampling are unchanged."},"field.autoScale":{"zh":"CCD 自動灰階對比","en":"Auto-scale CCD grayscale"},"action.save":{"zh":"儲存 CCD PNG","en":"Save CCD PNG"},"action.reset":{"zh":"恢復預設","en":"Reset defaults"},"stat.thickness":{"zh":"球心厚度","en":"Center thickness"},"stat.objectphase":{"zh":"球心相位 φ(0)","en":"Center phase φ(0)"},"stat.platephase":{"zh":"相位板相移 δ","en":"Phase-plate shift δ"},"stat.intensity":{"zh":"中心強度 I / I₀","en":"Center intensity I / I₀"},"image.thickness":{"zh":"透明球體厚度","en":"Transparent sphere thickness"},"image.center":{"zh":"中心 = 2R","en":"Center = 2R"},"image.phase":{"zh":"物體相位","en":"Object phase"},"image.wrapped":{"zh":"色相顯示相位（wrapped）","en":"Hue encodes wrapped phase"},"image.gray":{"zh":"灰階","en":"Grayscale"},"image.noSpot":{"zh":"CCD · 無 Phase Spot","en":"CCD · Without Phase Spot"},"image.reference":{"zh":"參考","en":"Reference"},"image.control":{"zh":"對照組","en":"Control"},"plot.title":{"zh":"中心截線 / Intensity profile","en":"Center line / Intensity profile"},"plot.legendWith":{"zh":"有 PS（模擬）","en":"With PS (simulated)"},"plot.legendWithout":{"zh":"無 PS（模擬）","en":"Without PS (simulated)"},"plot.legendAxes":{"zh":"垂直軸 I/I₀ · 水平軸物平面 x","en":"Vertical: I/I₀ · Horizontal: object-plane x"},"physical.checks":{"zh":"數值與物理檢查","en":"Numerical & physical checks"},"physical.spotdist":{"zh":"PS 距 L₂","en":"PS distance from L₂"},"physical.ccddist":{"zh":"CCD 距 L₂","en":"CCD distance from L₂"},"physical.mag":{"zh":"像的倍率","en":"Image magnification"},"physical.fov":{"zh":"物方視野","en":"Object-side field of view"},"physical.spotpx":{"zh":"PS 半徑 / 頻域網格","en":"PS radius / Fourier grid"},"physical.ccdfov":{"zh":"CCD 實際視野","en":"CCD physical field of view"},"model.title":{"zh":"本模擬使用的物理模型","en":"Physical model used in this simulator"},"model.assumptions":{"zh":"以 ABCD 透鏡矩陣定位物體的 Fourier-conjugate plane 與 CCD 像平面；假設傍軸、理想薄透鏡、平面波入射、薄相位物體、均勻介質、純相位 Phase Spot 和圓形有效 pupil。FFT 在物平面座標計算，CCD 影像顯示已換算回物方尺度。模型沒有模擬球體大折射率差造成的強折射／Mie 散射、鏡頭像差、真實相機雜訊或相位量測反演。","en":"ABCD ray-transfer matrices locate the Fourier-conjugate plane and CCD image plane. Assumptions: paraxial optics, ideal thin lenses, plane-wave illumination, a thin phase object, homogeneous medium, pure-phase spot, and a circular effective pupil. FFT calculations use object-plane coordinates; displayed CCD images are mapped to object-side scale. Strong refraction/Mie scattering at high index contrast, lens aberrations, camera noise, and quantitative phase retrieval are not modeled."},"model.relative":{"zh":"相對相位","en":"relative phase"},"model.first":{"zh":"若 PS 設為 0，對照圖只剩有限 NA 造成的 coherent diffraction。相位板改變的是參考光和散射光的","en":"With PS phase shift set to zero, the reference image includes only finite-NA coherent diffraction. The phase plate changes the "},"model.last":{"zh":"，不是直接把物體厚度轉成灰階；強相位可能出現亮暗反轉，不能以單張影像唯一解出厚度。","en":" between reference and scattered light; it does not directly map thickness to grayscale. Strong phase shifts can reverse contrast, so one intensity image cannot uniquely determine thickness."},"model.readmore":{"zh":"延伸閱讀：","en":"Further reading: "},"footer.description":{"zh":"本頁為完全離線、無外部 JavaScript 依賴的教學與研究概念模擬器。可直接儲存為 .html 後使用 Chrome / Edge 開啟。數據與影像是由瀏覽器即時運算所得，而非預製示意圖。","en":"This fully offline educational and research concept simulator has no external JavaScript dependencies. Save as .html and open it in Chrome or Edge. The browser computes the data and images live; they are not pre-rendered illustrations."},"footer.note":{"zh":"註：Phase Spot 是放在 L₂ 後方的參考光焦點，此焦點位置取決於兩片透鏡及其間距；其與 CCD 成像面的區別由光線傳遞矩陣驗證。","en":"Note: The phase spot is placed at the reference focus after L₂, whose position depends on both lenses and their separation. Ray-transfer matrices distinguish that focus from the CCD image plane."},"aria.0":{"zh":"可調整的光路示意圖","en":"Adjustable optical setup diagram"},"aria.1":{"zh":"物體、L1、L2、phase spot、CCD 光路圖","en":"Optical setup with object, L1, L2, phase spot, and CCD"},"aria.2":{"zh":"球體半徑數值","en":"Sphere radius value"},"aria.3":{"zh":"球體折射率數值","en":"Sphere refractive index value"},"aria.4":{"zh":"周圍介質折射率數值","en":"Surrounding medium index value"},"aria.5":{"zh":"相位板相對高度數值","en":"Relative phase-plate height value"},"aria.6":{"zh":"相位板折射率數值","en":"Phase-plate refractive index value"},"aria.7":{"zh":"相位板周圍折射率數值","en":"Phase-plate surroundings index value"},"aria.8":{"zh":"相位點半徑數值","en":"Phase-spot radius value"},"aria.9":{"zh":"球體厚度分布","en":"Sphere thickness distribution"},"aria.10":{"zh":"球體相位分布","en":"Sphere phase distribution"},"aria.11":{"zh":"相位差成像結果","en":"Phase-contrast CCD image"},"aria.12":{"zh":"沒有相位板的成像結果","en":"CCD image without phase spot"},"aria.13":{"zh":"有無相位板的中心強度截線圖","en":"Center intensity profile with and without phase spot"},"header.title":{"zh":"Phase Contrast \u003cspan style=\"color:var(--cyan)\">Imaging Lab\u003c/span>","en":"Phase Contrast \u003cspan style=\"color:var(--cyan)\">Imaging Lab\u003c/span>"},"error.sameIndex":{"zh":"相位板與周圍折射率相同，無法產生 π/2 相移","en":"The phase plate and its surroundings have the same refractive index; a π/2 shift is impossible."},"error.geometry":{"zh":"幾何配置無法形成「L₂ 後方 PS 焦點，再後方 CCD 實像」。請調整 s、f₁、f₂、d。","en":"The geometry cannot produce a PS focus after L₂ followed by a real CCD image. Adjust s, f₁, f₂, or d."},"error.geometryStatus":{"zh":"幾何條件不成立 · 請調整透鏡參數","en":"Invalid imaging geometry · Adjust lens parameters"},"error.runtime":{"zh":"計算錯誤：{message}","en":"Calculation error: {message}"},"status.calculating":{"zh":"計算中…","en":"Calculating…"},"status.done":{"zh":"{n} × {n} · 計算完成 · 物方視野 {fov} µm","en":"{n} × {n} · Complete · Object-side FOV {fov} µm"},"warning.index":{"zh":"折射率差較大：薄相位屏假設可能失效。真實球體的折射與內部傳播可能明顯改變影像。","en":"Large refractive-index contrast: the thin-phase-screen approximation may fail. Refraction and internal propagation may significantly affect the image."},"warning.gradient":{"zh":"球面附近相位變化超過每像素 π rad：物體相位可能欠取樣。請減少 Δx，或降低折射率差。","en":"Phase variations near the sphere exceed π rad per pixel: the object phase may be undersampled. Reduce Δx or the refractive-index contrast."},"warning.spot":{"zh":"Phase Spot 的 Fourier-plane 半徑只有 {pixels} 個網格：FFT 無法精確表示其邊界。可提高解析度或增加視野。","en":"The phase-spot radius spans only {pixels} Fourier-grid pixels; the FFT poorly resolves its edge. Increase the resolution or field of view."},"warning.nyquist":{"zh":"所設定 NA 超過物平面取樣的 Nyquist 頻率：部分可通過的空間頻率無法模擬，請降低 Δx。","en":"The chosen NA exceeds the sampling Nyquist frequency; some transmitted spatial frequencies cannot be modeled. Reduce Δx."},"warning.fov":{"zh":"球體幾乎佔滿計算視野，週期性 FFT 邊界可能互相干擾。請增加 Δx 或使用較小的半徑。","en":"The sphere nearly fills the computational field: periodic FFT boundaries may interfere. Increase Δx or reduce the sphere radius."},"warning.strongPhase":{"zh":"球體最大相位超過 π：PCI 亮度與厚度通常不再呈現單調對應，不能直接以灰階還原厚度。","en":"The maximum object phase exceeds π: PCI intensity is generally not monotonic in thickness. Grayscale cannot directly recover thickness."},"warning.weakPhase":{"zh":"物體相位已超過約 0.5 rad：弱相位線性近似開始偏離，請以完整 FFT 數值結果判讀。","en":"The object phase exceeds about 0.5 rad; the weak-phase linear approximation begins to break down. Interpret the full FFT result instead."},"warning.crop":{"zh":"目前放大視野會裁切球體：選擇較低的顯示放大倍率，FFT 計算仍使用完整視野。","en":"The current display zoom crops the sphere. Use a lower zoom; the FFT still uses the full computational field."},"warning.ok":{"zh":"目前幾何與採樣設定沒有觸發主要警示。仍須注意真實相位板對散射光的有限重疊。","en":"No major geometry or sampling warnings were triggered. Finite overlap of scattered light with the real phase spot still matters."},"dynamic.scale":{"zh":"{length} µm（物平面）","en":"{length} µm (object plane)"},"dynamic.phaseCenter":{"zh":"φ(0) = {value} rad","en":"φ(0) = {value} rad"},"dynamic.autoscale":{"zh":"自動對比（每張獨立映射）","en":"Auto-contrast (independently scaled)"},"dynamic.fixedscale":{"zh":"固定 0–2 I₀","en":"Fixed 0–2 I₀"},"dynamic.positive":{"zh":"正向","en":"upright"},"dynamic.negative":{"zh":"反向","en":"inverted"},"dynamic.bump":{"zh":"凸起 Bump (+)","en":"Bump (+)"},"dynamic.dent":{"zh":"凹陷 Dent (−)","en":"Dent (−)"},"dynamic.flat":{"zh":"平面 Flat (0)","en":"Flat (0)"},"diagram.object":{"zh":"物體","en":"Object"},"diagram.spot":{"zh":"相位點","en":"Phase Spot"},"diagram.ps":{"zh":"PS：","en":"PS: "},"diagram.ccd":{"zh":"CCD：","en":"CCD: "},"diagram.fromL2":{"zh":"距 L₂","en":"from L₂"},"plot.xAxis":{"zh":"x（µm，物平面）","en":"x (µm, object plane)"}};
+let currentLanguage='zh';
+function t(key, vars={}){
+ const item=translations[key];
+ const template=item?(item[currentLanguage]??item.en):key;
+ return template.replace(/\{(\w+)\}/g,(_,name)=>String(vars[name]??''));
+}
+function setLanguage(language){
+ currentLanguage=(language==='en'?'en':'zh');
+ document.documentElement.lang=currentLanguage==='zh'?'zh-Hant':'en';
+ document.title=currentLanguage==='zh'?'相位對比成像實驗室 · 780 nm':'Phase Contrast Imaging Lab · 780 nm';
+ document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=t(el.dataset.i18n);});
+ document.querySelectorAll('[data-i18n-html]').forEach(el=>{el.innerHTML=t(el.dataset.i18nHtml);});
+ document.querySelectorAll('[data-i18n-aria-label]').forEach(el=>{el.setAttribute('aria-label',t(el.dataset.i18nAriaLabel));});
+ $('langZh').setAttribute('aria-pressed',String(currentLanguage==='zh'));
+ $('langEn').setAttribute('aria-pressed',String(currentLanguage==='en'));
+ try{localStorage.setItem('pci-simulator-language',currentLanguage);}catch(e){}
+ schedule();
+}
+$('langZh').addEventListener('click',()=>setLanguage('zh'));
+$('langEn').addEventListener('click',()=>setLanguage('en'));
+
+const vals={...defs}; let lastResult=null, lastGeo=null, pending=false, running=false;
+const fields=Object.keys(defs);
+for(const key of fields){
+ const range=$(key),num=$(key+'Number');
+ function apply(value){const min=Number(range.min),max=Number(range.max); if(!Number.isFinite(value))return; const v=Math.max(min,Math.min(max,value));vals[key]=v;range.value=String(v);num.value=String(v);schedule();}
+ range.addEventListener('input',()=>apply(Number(range.value)));
+ num.addEventListener('input',()=>{if(num.value.trim()!=='')apply(Number(num.value));});
+ num.addEventListener('change',()=>apply(Number(num.value)));
+}
+['applySpot','autoScale','resolution','zoom'].forEach(id=>$(id).addEventListener('change',schedule));
+$('posPi').addEventListener('click',()=>setHeight(Math.round(780/(4*(vals.nPlate-vals.nPlateBg)))))
+$('negPi').addEventListener('click',()=>setHeight(Math.round(-780/(4*(vals.nPlate-vals.nPlateBg)))))
+$('zeroH').addEventListener('click',()=>setHeight(0));
+function setHeight(v){if(!Number.isFinite(v)){showStatus(t('error.sameIndex'));return;}v=Math.min(1600,Math.max(-1600,v));vals.height=v;$('height').value=v;$('heightNumber').value=v;schedule();}
+$('reset').addEventListener('click',()=>{for(const k of fields){vals[k]=defs[k];$(k).value=defs[k];$(k+'Number').value=defs[k];}$('applySpot').checked=true;$('autoScale').checked=true;$('resolution').value='512';$('zoom').value='4';schedule();});
+$('saveImage').addEventListener('click',()=>{if(!lastResult)return;const link=document.createElement('a');link.download=`PCI_780nm_R${vals.radius}um_h${vals.height}nm.png`;link.href=$('ccdCanvas').toDataURL('image/png');link.click();});
+function showStatus(s){$('status').textContent=s;}
+function matMul(a,b){return [a[0]*b[0]+a[1]*b[2],a[0]*b[1]+a[1]*b[3],a[2]*b[0]+a[3]*b[2],a[2]*b[1]+a[3]*b[3]];}
+const P=z=>[1,z,0,1],L=f=>[1,0,-1/f,1];
+function geometry(){
+ const {s1,f1,f2,gap}=vals;
+ const lenses=matMul(L(f2),matMul(P(gap),L(f1)));
+ const obj=matMul(lenses,P(s1));
+ if(Math.abs(lenses[2])<1e-9||Math.abs(obj[3])<1e-9)return null;
+ // Reference plane of a normally incident plane wave: A_PS = 0.
+ const zspot=-lenses[0]/lenses[2];
+ // Conjugate image plane for object: B_CCD = 0.
+ const zccd=-obj[1]/obj[3];
+ if(!(zspot>0 && zccd>zspot+1 && Number.isFinite(zccd) && zccd<10000))return null;
+ const atSpot=matMul(P(zspot),obj),atImage=matMul(P(zccd),obj);
+ if(Math.abs(atSpot[0])>1e-6||Math.abs(atImage[1])>1e-6)return null;
+ return {zspot,zccd,B:atSpot[1],magnification:atImage[0],zBetween:zccd-zspot};
+}
+function fft1d(re,im,offset,stride,n,inverse){
+ // Iterative radix-2 complex FFT, in-place on strided array.
+ for(let i=1,j=0;i<n;i++){
+  let bit=n>>1;for(;j&bit;bit>>=1)j^=bit;j^=bit;
+  if(i<j){let ia=offset+i*stride,ja=offset+j*stride;let q=re[ia];re[ia]=re[ja];re[ja]=q;q=im[ia];im[ia]=im[ja];im[ja]=q;}
+ }
+ for(let len=2;len<=n;len<<=1){
+  const ang=(inverse?2:-2)*Math.PI/len,wr0=Math.cos(ang),wi0=Math.sin(ang);
+  for(let i=0;i<n;i+=len){let wr=1,wi=0;
+   for(let j=0;j<len/2;j++){
+    const a=offset+(i+j)*stride,b=offset+(i+j+len/2)*stride;
+    const ur=re[a],ui=im[a],vr=re[b]*wr-im[b]*wi,vi=re[b]*wi+im[b]*wr;
+    re[a]=ur+vr;im[a]=ui+vi;re[b]=ur-vr;im[b]=ui-vi;
+    const temp=wr*wr0-wi*wi0;wi=wr*wi0+wi*wr0;wr=temp;
+   }
+  }
+ }
+ if(inverse){for(let i=0;i<n;i++){const j=offset+i*stride;re[j]/=n;im[j]/=n;}}
+}
+function fft2(re,im,n,inverse){for(let row=0;row<n;row++)fft1d(re,im,row*n,1,n,inverse);for(let col=0;col<n;col++)fft1d(re,im,col,n,n,inverse);}
+function quantile(a,fraction){const len=a.length,sub=[];const stride=Math.max(1,Math.floor(len/35000));for(let i=0;i<len;i+=stride)sub.push(a[i]);sub.sort((x,y)=>x-y);return sub[Math.min(sub.length-1,Math.floor(fraction*(sub.length-1)))];}
+function numeric(v,d=2){return Number.isFinite(v)?v.toFixed(d):'—';}
+function simulate(){
+ const geo=geometry();lastGeo=geo;
+ if(!geo){return {errorKey:'error.geometry'};}
+ const n=Number($('resolution').value),N=n*n,dx=vals.dx;
+ const re=new Float64Array(N),im=new Float64Array(N),thick=new Float32Array(N),phase=new Float32Array(N);
+ const radius2=vals.radius*vals.radius,dn=vals.nSphere-vals.nMedium;
+ let maxGrad=0,phiMax=0;
+ const center=n/2;
+ for(let y=0;y<n;y++){
+  let py=(y-center)*dx;
+  for(let x=0;x<n;x++){
+   const px=(x-center)*dx,rr=px*px+py*py,idx=y*n+x;
+   const t=rr<radius2?2*Math.sqrt(radius2-rr):0;
+   const ph=2*Math.PI*dn*t/lambdaUm;
+   thick[idx]=t;phase[idx]=ph;re[idx]=Math.cos(ph);im[idx]=Math.sin(ph);
+   if(Math.abs(ph)>phiMax)phiMax=Math.abs(ph);
+  }
+ }
+ // Estimate phase sample max along central radial cut, including the edge.
+ for(let x=0;x<n-1;x++)maxGrad=Math.max(maxGrad,Math.abs(phase[center*n+x+1]-phase[center*n+x]));
+ fft2(re,im,n,false);
+ const fftR=re,fftI=im;
+ const pdelta=2*Math.PI*(vals.nPlate-vals.nPlateBg)*(vals.height/1000)/lambdaUm;
+ const c=Math.cos(pdelta),ss=Math.sin(pdelta);
+ // Coordinate conversion X_PS[um] = lambda[um] * B_PS[um] * fx[cycles/um].
+ const spotF=vals.spot/(lambdaUm*Math.abs(geo.B)*1000);
+ const pupilF=vals.NA/lambdaUm;
+ const spotPixels=spotF*n*dx;
+ const psOn=$('applySpot').checked;
+ const filteredR=new Float64Array(N),filteredI=new Float64Array(N),refR=new Float64Array(N),refI=new Float64Array(N);
+ for(let y=0;y<n;y++){
+  const fy=(y<=n/2?y:y-n)/(n*dx);
+  for(let x=0;x<n;x++){
+   const fx=(x<=n/2?x:x-n)/(n*dx),f2=fx*fx+fy*fy,idx=y*n+x;
+   if(f2>pupilF*pupilF)continue;
+   const a=fftR[idx],b=fftI[idx];refR[idx]=a;refI[idx]=b;
+   if(psOn && f2<=spotF*spotF){filteredR[idx]=a*c-b*ss;filteredI[idx]=a*ss+b*c;}
+   else{filteredR[idx]=a;filteredI[idx]=b;}
+  }
+ }
+ fft2(filteredR,filteredI,n,true);fft2(refR,refI,n,true);
+ const ccd=new Float32Array(N),reference=new Float32Array(N);
+ for(let i=0;i<N;i++){ccd[i]=filteredR[i]**2+filteredI[i]**2;reference[i]=refR[i]**2+refI[i]**2;}
+ return {n,ccd,reference,thick,phase,phiMax,phaseCenter:phase[center*n+center],pdelta,geo,spotPixels,maxGrad};
+}
+function renderGray(canvas,arr,n,mode,scale){
+ canvas.width=n;canvas.height=n;const ctx=canvas.getContext('2d',{alpha:false}),img=ctx.createImageData(n,n);
+ let min=0,max=1;
+ if(mode==='thickness'){min=0;max=2*vals.radius;}
+ else if(mode==='phase'){min=-Math.PI;max=Math.PI;}
+ else if(mode==='intensity'){if(scale){min=Infinity;max=-Infinity;for(let i=0;i<arr.length;i++){if(arr[i]<min)min=arr[i];if(arr[i]>max)max=arr[i];}const width=Math.max(max-min,0.04);const mid=(max+min)/2;min=mid-width/2;max=mid+width/2;}else{min=0;max=2;}}
+ const range=Math.max(1e-12,max-min);
+ for(let i=0;i<arr.length;i++){
+  let v=arr[i];let r,g,b;
+  if(mode==='phase'){
+   // Phase wrapping to [-π,π]. background φ=0 is neutral gray.
+   v=Math.atan2(Math.sin(v),Math.cos(v));
+   const q=(v+Math.PI)/(2*Math.PI);const rgb=phaseColor(q);r=rgb[0];g=rgb[1];b=rgb[2];
+  }else if(mode==='thickness'){
+   const q=Math.min(1,Math.max(0,(v-min)/range));r=Math.round(12+211*q);g=Math.round(22+212*q);b=Math.round(35+199*q);
+  }else{
+   const q=Math.min(1,Math.max(0,(v-min)/range));const cc=Math.round(q*255);r=cc;g=cc;b=cc;
+  }
+  const j=i*4;img.data[j]=r;img.data[j+1]=g;img.data[j+2]=b;img.data[j+3]=255;
+ }
+ // Display a center crop without changing the Fourier-domain simulation grid.
+ const zoom=Number($('zoom').value);
+ if(zoom===1){ctx.putImageData(img,0,0);}
+ else{
+  const temp=document.createElement('canvas');temp.width=n;temp.height=n;
+  temp.getContext('2d',{alpha:false}).putImageData(img,0,0);
+  const size=n/zoom,start=(n-size)/2;
+  ctx.imageSmoothingEnabled=true;
+  ctx.drawImage(temp,start,start,size,size,0,0,n,n);
+ }
+ return {min,max};
+}
+function phaseColor(q){
+ // stable divergent palette: -π blue, 0 neutral, +π coral
+ const stops=[[30,95,170],[75,179,206],[188,203,205],[241,178,119],[207,87,111]];
+ const v=Math.max(0,Math.min(3.99999,q*4)),i=Math.floor(v),a=v-i;
+ return [0,1,2].map(c=>Math.round(stops[i][c]*(1-a)+stops[i+1][c]*a));
+}
+function graph(result){
+ const canvas=$('profileCanvas'),ctx=canvas.getContext('2d'),W=1000,H=420;
+ ctx.clearRect(0,0,W,H);ctx.fillStyle='#0b1422';ctx.fillRect(0,0,W,H);
+ const n=result.n,cy=n>>1,ccd=result.ccd,ref=result.reference,px=vals.dx;
+ const half=Math.min(n/2-3,Math.ceil(Math.max(1.8*vals.radius,35)/px));
+ const start=cy-half,end=cy+half,marg={l:65,r:18,t:24,b:57};
+ const all=[];for(let x=start;x<=end;x++){all.push(ccd[cy*n+x],ref[cy*n+x]);}
+ let yMin=Math.min(0,Math.min(...all)),yMax=Math.max(1.1,Math.max(...all));
+ if(yMax-yMin<.2){yMin-=.1;yMax+=.1;}
+ let pad=.08*(yMax-yMin);yMax+=pad;yMin=Math.max(0,yMin-pad);
+ const gx=x=>marg.l+(x-start)/(end-start)*(W-marg.l-marg.r),gy=y=>H-marg.b-(y-yMin)/(yMax-yMin)*(H-marg.t-marg.b);
+ ctx.font='22px system-ui';ctx.textAlign='right';ctx.textBaseline='middle';
+ for(let j=0;j<=4;j++){const v=yMin+(yMax-yMin)*j/4,y=gy(v);ctx.strokeStyle='#26384e';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(marg.l,y);ctx.lineTo(W-marg.r,y);ctx.stroke();ctx.fillStyle='#99aec6';ctx.fillText(v.toFixed(2),marg.l-10,y);}
+ ctx.textAlign='center';ctx.textBaseline='top';const ticks=4;
+ for(let j=0;j<=ticks;j++){const x=start+(end-start)*j/ticks,v=(x-cy)*px,xp=gx(x);ctx.fillStyle='#9fb5cf';ctx.fillText(v.toFixed(0),xp,H-marg.b+13);}
+ ctx.font='23px system-ui';ctx.fillStyle='#9bb4cd';ctx.fillText(t('plot.xAxis'),(W+marg.l-marg.r)/2,H-24);
+ ctx.save();ctx.translate(17,H/2);ctx.rotate(-Math.PI/2);ctx.fillText('I / I₀',0,0);ctx.restore();
+ for(const [arr,color] of [[ref,'#e0aef5'],[ccd,'#52e0e5']]){
+  ctx.beginPath();ctx.strokeStyle=color;ctx.lineWidth=3.5;
+  for(let x=start;x<=end;x++){const xp=gx(x),yp=gy(arr[cy*n+x]);if(x===start)ctx.moveTo(xp,yp);else ctx.lineTo(xp,yp);}
+  ctx.stroke();
+ }
+ $('profileSpan').textContent=`x = ${numeric(-half*px,1)} … +${numeric(half*px,1)} µm`;
+}
+function svgEscape(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+function drawOptics(geo){
+ const svg=$('opticalDiagram'),v=vals;
+ let total=v.s1+v.gap+(geo?geo.zccd:100),left=77,right=1025,axis=96;
+ const sx=z=>left+z/total*(right-left);
+ const object=sx(0),l1=sx(v.s1),l2=sx(v.s1+v.gap),ps=geo?sx(v.s1+v.gap+geo.zspot):790,ccd=geo?sx(v.s1+v.gap+geo.zccd):1010;
+ // Display elements with a minimum visual spacing, while preserving relative labels.
+ const lx=235,ux=390,px=680,cx=1000;
+ const fx1=svgEscape(`${v.f1} mm`),fx2=svgEscape(`${v.f2} mm`),gg=svgEscape(`${v.gap} mm`);
+ const refPaths=[-23,0,23].map(delta=>`M 44 ${axis+delta} L ${lx} ${axis+delta*.85} L ${ux} ${axis+delta*.55} L ${px} ${axis} L ${cx} ${axis-delta*2.1}`).join(' ');
+ const scattering=`M 72 ${axis} Q 240 ${axis-77} ${lx} ${axis-53} Q 500 ${axis-45} ${px} ${axis-34} Q 780 ${axis-28} ${cx} ${axis-32} M 72 ${axis} Q 230 ${axis+76} ${lx} ${axis+55} Q 500 ${axis+45} ${px} ${axis+35} Q 780 ${axis+28} ${cx} ${axis+30}`;
+ const plateTop=v.height>=0?66:81,plateH=v.height>=0?60:30;
+ svg.innerHTML=`<defs><linearGradient id="beamBg" x1="0" x2="1"><stop stop-color="#ffc479" stop-opacity=".08"/><stop offset=".6" stop-color="#ffa148" stop-opacity=".12"/><stop offset="1" stop-color="#ffc479" stop-opacity=".08"/></linearGradient></defs><rect x="1" y="1" width="1078" height="208" rx="11" fill="#0a1828"/><rect x="21" y="37" width="1038" height="117" rx="6" fill="url(#beamBg)" stroke="#37516b"/><path d="M 33 ${axis} H 1045" stroke="#8aa7bd" stroke-opacity=".5" stroke-dasharray="6 7"/><path d="${refPaths}" fill="none" stroke="#ffc274" stroke-width="2.4" stroke-linecap="round"/><path d="${scattering}" fill="none" stroke="#54d6e3" stroke-width="1.8" stroke-dasharray="5 6" stroke-opacity=".85"/><ellipse cx="66" cy="96" rx="10" ry="26" fill="#bca8ff" fill-opacity=".85"/><path d="M ${lx} 46 Q ${lx-15} 96 ${lx} 146 Q ${lx+16} 96 ${lx} 46Z" fill="#a3d4f6" fill-opacity=".75" stroke="#81bde7"/><path d="M ${ux} 46 Q ${ux-15} 96 ${ux} 146 Q ${ux+16} 96 ${ux} 46Z" fill="#a3d4f6" fill-opacity=".75" stroke="#81bde7"/><rect x="${px-2}" y="51" width="5" height="88" fill="#81bfaf" opacity=".6"/><rect x="${px-3}" y="${plateTop}" width="7" height="${plateH}" fill="#cf97f6"/><rect x="${cx-3}" y="43" width="7" height="106" fill="#8fe0be"/><g fill="#eef6ff" font-size="15" text-anchor="middle" font-family="system-ui"><text x="66" y="177">${t('diagram.object')}</text><text x="${lx}" y="177">L₁</text><text x="${ux}" y="177">L₂</text><text x="${px}" y="177">${t('diagram.spot')}</text><text x="${cx}" y="177">CCD</text></g><g fill="#a5bbd3" font-size="12" text-anchor="middle" font-family="system-ui"><text x="155" y="22">s = ${numeric(v.s1,0)} mm</text><text x="${(lx+ux)/2}" y="196">d = ${gg}</text><text x="${(ux+px)/2}" y="22">${t('diagram.ps')}${geo?numeric(geo.zspot,2)+' mm':'—'}</text><text x="${(px+cx)/2}" y="196">${t('diagram.ccd')}${geo?numeric(geo.zccd,2)+' mm '+t('diagram.fromL2'):'—'}</text></g><g fill="#bad5ea" font-size="11" text-anchor="middle"><text x="${lx}" y="39">f₁ = ${fx1}</text><text x="${ux}" y="39">f₂ = ${fx2}</text></g>`;
+}
+function showWarnings(result){
+ const notes=[],r=result,spot=r.spotPixels;
+ if(Math.abs(vals.nSphere-vals.nMedium)>=.05)notes.push({key:'warning.index'});
+ if(r.maxGrad>Math.PI)notes.push({key:'warning.gradient'});
+ if(spot<1.5)notes.push({key:'warning.spot',args:{pixels:numeric(spot,2)}});
+ if(vals.NA/lambdaUm>1/(2*vals.dx))notes.push({key:'warning.nyquist'});
+ if(vals.radius*2>r.n*vals.dx*.45)notes.push({key:'warning.fov'});
+ if(Math.abs(r.phiMax)>Math.PI)notes.push({key:'warning.strongPhase'});
+ else if(Math.abs(r.phiMax)>0.5)notes.push({key:'warning.weakPhase'});
+ if(2*vals.radius>r.n*vals.dx/Number($('zoom').value))notes.push({key:'warning.crop'});
+ if(notes.length===0)notes.push({key:'warning.ok',ok:true});
+ $('physicsNotes').innerHTML=notes.map(n=>`<div class="message ${n.ok?'':'warning'}">${svgEscape(t(n.key,n.args))}</div>`).join('');
+}
+
+function display(result){
+ const r=result,n=r.n,center=n>>1,geo=r.geo;
+ const visibleFov=n*vals.dx/Number($('zoom').value);
+ const desired=visibleFov*.22,unit=Math.pow(10,Math.floor(Math.log10(desired)));
+ const physical=[1,2,5,10].map(v=>v*unit).filter(v=>v<=desired).pop()||unit;
+ ['scaleLength1','scaleLength2','scaleLength3','scaleLength4'].forEach(id=>{
+   $(id).textContent=t('dynamic.scale',{length:numeric(physical,0)});
+   const canvas=$(id).closest('.image-stage').querySelector('canvas');
+   const cssWidth=canvas.getBoundingClientRect().width||320;
+   $(id).previousElementSibling.style.width=`${physical/visibleFov*cssWidth}px`;
+ });
+ $('maxThickness').textContent=`${numeric(vals.radius*2,1)} µm`;
+ $('phaseRange').textContent=t('dynamic.phaseCenter',{value:numeric(r.phaseCenter,2)});
+ const p=renderGray($('thicknessCanvas'),r.thick,n,'thickness',false);
+ renderGray($('phaseCanvas'),r.phase,n,'phase',false);
+ const scaled=$('autoScale').checked;
+ const ranges=renderGray($('ccdCanvas'),r.ccd,n,'intensity',scaled);
+ const refRanges=renderGray($('referenceCanvas'),r.reference,n,'intensity',scaled);
+ $('ccdRange').textContent=`${numeric(ranges.min,2)} … ${numeric(ranges.max,2)} I₀`;
+ $('referenceRange').textContent=`${numeric(refRanges.min,2)} … ${numeric(refRanges.max,2)} I₀`;
+ $('ccdContrast').textContent=scaled?t('dynamic.autoscale'):t('dynamic.fixedscale');
+ $('ccdLabel').textContent=$('applySpot').checked?'PS ON':'PS OFF';
+ $('statThickness').innerHTML=`${numeric(2*vals.radius,1)} <em>µm</em>`;
+ $('statObjectPhase').innerHTML=`${numeric(r.phaseCenter,2)} <em>rad</em>`;
+ $('statPlatePhase').innerHTML=`${numeric(r.pdelta,2)} <em>rad</em>`;
+ $('statIntensity').innerHTML=`${numeric(r.ccd[center*n+center],3)} <em>I₀</em>`;
+ $('geomSpot').textContent=`${numeric(geo.zspot,2)} mm`;
+ $('geomCCD').textContent=`${numeric(geo.zccd,2)} mm`;
+ $('geomMag').textContent=`${numeric(geo.magnification,3)} × (${geo.magnification<0?t('dynamic.negative'):t('dynamic.positive')})`;
+ $('geomFov').textContent=`${numeric(n*vals.dx,0)} µm`;
+ $('geomPixel').textContent=`${numeric(r.spotPixels,2)} pixel`;
+ $('geomCCDfield').textContent=`${numeric(n*vals.dx*Math.abs(geo.magnification),0)} µm`;
+ $('plateKind').textContent=vals.height>0?t('dynamic.bump'):vals.height<0?t('dynamic.dent'):t('dynamic.flat');
+ showWarnings(r);graph(r);
+}
+function schedule(){if(pending)return;pending=true;showStatus(t('status.calculating'));setTimeout(()=>{pending=false;run();},70);}
+function run(){if(running){schedule();return;}running=true;
+ try{const r=simulate();drawOptics(lastGeo);if(r.errorKey){$('physicsNotes').innerHTML='<div class="message warning">'+svgEscape(t(r.errorKey))+'</div>';showStatus(t('error.geometryStatus'));}
+ else{display(r);lastResult=r;showStatus(t('status.done',{n:r.n,fov:numeric(r.n*vals.dx,0)}));}}
+ catch(err){console.error(err);showStatus(t('error.runtime',{message:err.message}));}
+ finally{running=false;}}
+let initialLanguage='zh';
+try{initialLanguage=localStorage.getItem('pci-simulator-language')==='en'?'en':'zh';}catch(e){}
+setLanguage(initialLanguage);
+</script>
+</body>
+</html>
